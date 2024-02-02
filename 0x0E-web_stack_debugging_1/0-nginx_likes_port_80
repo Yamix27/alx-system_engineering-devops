@@ -1,12 +1,5 @@
 #!/usr/bin/env bash
 # 0-Nginx likes port 80
 
-# Create a symbolic link for the default Nginx site configuration
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-
-# Restart Nginx service
-service nginx restart
-
-# Check Nginx status and log information
-service nginx status
-netstat -tuln | grep ':80'
+sudo service nginx restart
