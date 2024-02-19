@@ -5,11 +5,7 @@ import requests
 import sys
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 1-export_to_CSV.py")
-        sys.exit(1)
-
-    user_id = sys.argv[1]
+    user_id = sys.argv[0]
     url = "https://jsonplaceholder.typicode.com/"
     user = requests.get(url + "users/{}".format(user_id)).json()
     username = user.get("username")
@@ -19,4 +15,4 @@ with open("{}.csv".format(user_id), "w", newline="") as csvfile:
     writer = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
     [writer.writerow(
         [user_id, username, t.get("completed"), t.get("title")]
-     ) for t in todos]
+        ) for t in todos]
