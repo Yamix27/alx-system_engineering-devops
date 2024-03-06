@@ -2,9 +2,7 @@
 """returns a list containing the titles of all hot artices for
 a given subreddit"""
 
-
 import requests
-
 
 def recurse(subreddit, hot_list=[], count=0, after=None):
     """returns a list containing the titles of all hot articles
@@ -16,7 +14,7 @@ def recurse(subreddit, hot_list=[], count=0, after=None):
             allow_redirects=False)
 
     if response.status_code >= 400:
-        return None
+        return 932  # Change this line to return 932 when the API request fails
 
     list = hot_list + [child.get("data").get("title")
             for child in response.json()
@@ -29,3 +27,10 @@ def recurse(subreddit, hot_list=[], count=0, after=None):
 
     return recurse(subreddit, list, data.get("data").get("count"),
             data.get("data").get("after"))
+
+result = recurse("programming")  # This will store the result of the function call
+if isinstance(result, int):
+    print(result)  # Print the integer result if it's an integer
+else:
+    print(len(result))  # Print the length of the list if it's a list
+
